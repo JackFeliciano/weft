@@ -1,0 +1,56 @@
+:root {
+  --ink: #1b1b1b;
+  --paper: #fbfaf7;
+  --rule: #d8d4cb;
+  --mark: #880000;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 16px/1.6 Georgia, 'Times New Roman', serif;
+}
+
+main {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 3rem 1.25rem 4rem;
+}
+
+h1 { font-size: 1.9rem; line-height: 1.2; margin: 0 0 0.6rem; }
+h2 { font-size: 1.15rem; margin: 2rem 0 0.4rem; }
+p { margin: 0 0 1rem; }
+
+.lede { font-size: 1.12rem; color: #333; }
+
+.stage {
+  font-family: 'SF Mono', Consolas, monospace;
+  font-size: 0.82rem;
+  color: var(--mark);
+  border-top: 1px solid var(--rule);
+  padding-top: 0.7rem;
+}
+
+.warps { display: grid; gap: 1.2rem; margin: 1.5rem 0; }
+
+.warp {
+  border: 1px solid var(--rule);
+  padding: 1rem 1.2rem;
+  background: #fff;
+}
+
+.where { font-size: 0.9rem; color: #444; word-break: break-all; }
+
+table.thread { width: 100%; border-collapse: collapse; font-size: 0.9rem; margin-top: 0.6rem; }
+table.thread th, table.thread td { text-align: left; padding: 0.3rem 0.5rem; border-bottom: 1px solid var(--rule); }
+table.thread th { color: #666; font-weight: normal; }
+table.thread td.num { text-align: right; font-variant-numeric: tabular-nums; }
+table.thread td.seal { font-family: 'SF Mono', Consolas, monospace; font-size: 0.72rem; color: #555; word-break: break-all; }
+
+.steps { padding-left: 1.2rem; font-size: 0.95rem; }
+.steps li { margin-bottom: 0.6rem; }
+
+code { font-family: 'SF Mono', Consolas, monospace; font-size: 0.9em; background: #f1eee7; padding: 0.05rem 0.25rem; }

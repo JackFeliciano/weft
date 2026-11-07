@@ -1,0 +1,16 @@
+[Unit]
+Description=WEFT warp demo
+After=network.target
+
+[Service]
+Type=simple
+User=opc
+Group=opc
+WorkingDirectory=/srv/weft
+Environment=WEFT_BASE=/weft/
+ExecStart=/usr/bin/php -S 127.0.0.1:8105 -t showroom showroom/index.php
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target
