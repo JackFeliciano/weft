@@ -49,9 +49,9 @@ HTML;
 
     public function page(Sample $sample): string
     {
-        $TITLE = 'WEFT, warps reachable at a hidden service';
-        $LEDE = 'WEFT is the InFolk network protocol for nodes that hold warps and exchange sealed shuttles.';
-        $WHAT = 'A node runs WEFT and holds a warp that answers at a Tor hidden service. The warp publishes a descriptor with its protocol version, handle, address and seat. A shuttle names its sending and receiving warps, sequence number and body, then carries a seal over those fields. The receiving warp recomputes the seal and rejects the shuttle if the seals differ. It also rejects a sequence number it already holds. The thread returns landed shuttles in sequence order.';
+        $TITLE = 'WEFT, a network of nodes reached in private';
+        $LEDE = 'WEFT is a network protocol that connects independent nodes through private addresses, verified identities and signed messages.';
+        $WHAT = 'WEFT connects nodes through Tor hidden services, allowing each node to hide its location and communicate with peers who know its address. Each participant carries an InDX identity, and every message carries a verifiable seal. The chain records signed events, while gossip, catch up and handshake rules govern communication between nodes.';
 
         $out = $this->header($TITLE);
         $out .= '<h1>' . $this->h($TITLE) . '</h1>' . "\n";
@@ -69,11 +69,9 @@ HTML;
         $out .= '<h2>What a node does</h2>' . "\n";
         $out .= '<ol class="steps">' . "\n";
         foreach ([
-            ['Reads the descriptor', 'The sender reads the receiving warp\'s protocol version, handle, address and seat.'],
-            ['Seals a shuttle', 'The sender creates a shuttle and seals its fields.'],
-            ['Sends the shuttle', 'The sender sends the shuttle to the receiving warp.'],
-            ['Refuses a repeat', 'The receiving warp rejects a shuttle with a sequence number it already holds.'],
-            ['Reads the thread', 'The reader gets landed shuttles in sequence order and sees the first missing number when a gap occurs.'],
+            ['Run WEFT on a node', 'publish its descriptor with its protocol version, handle, address and seat.'],
+            ['Establish contact with another node', 'reach it through its known address and verify its InDX identity.'],
+            ['Exchange shuttles', 'verify their seals and sequence numbers, and use the thread to track delivery and identify missing messages.'],
         ] as [$step, $line]) {
             $out .= '<li><strong>' . $this->h($step) . '</strong> ' . $this->h($line) . '</li>' . "\n";
         }
