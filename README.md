@@ -2,7 +2,17 @@
 
 ## What the project is
 
-WEFT is the InFolk network protocol. This repository holds a demonstration of the protocol, written in PHP 8.3. It runs without Composer or external packages.
+WEFT is a network protocol built around independent nodes that communicate through Tor
+hidden services, where each node operates as a warp and carries its own strand of the
+network.
+
+A node publishes a descriptor at its hidden service, and participants use InDX identities
+to establish trust. Signed events form a chain that records no account balances. Sealed
+messages called shuttles carry the communication, with gossip, catch up and handshake
+rules governing their exchange.
+
+This repository holds a demonstration of the protocol, written in PHP 8.3. It runs
+without Composer or external packages.
 
 A node runs WEFT and holds a warp. Each warp answers at a Tor hidden service and exposes 3 paths. The descriptor publishes the protocol version, handle, address and seat. The shuttle path accepts a sealed shuttle. The thread path returns landed shuttles in sequence order.
 

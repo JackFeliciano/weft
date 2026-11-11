@@ -50,8 +50,8 @@ HTML;
     public function page(Sample $sample): string
     {
         $TITLE = 'WEFT, a network of nodes reached in private';
-        $LEDE = 'WEFT is a network protocol that connects independent nodes through private addresses, verified identities and signed messages.';
-        $WHAT = 'WEFT connects nodes through Tor hidden services, allowing each node to hide its location and communicate with peers who know its address. Each participant carries an InDX identity, and every message carries a verifiable seal. The chain records signed events, while gossip, catch up and handshake rules govern communication between nodes.';
+        $LEDE = 'WEFT is a network protocol built around independent nodes that communicate through Tor hidden services, where each node operates as a warp and carries its own strand of the network.';
+        $WHAT = 'A node publishes a descriptor at its hidden service, and participants use InDX identities to establish trust. Signed events form a chain that records no account balances. Sealed messages called shuttles carry the communication, with gossip, catch up and handshake rules governing their exchange.';
 
         $out = $this->header($TITLE);
         $out .= '<h1>' . $this->h($TITLE) . '</h1>' . "\n";
@@ -61,17 +61,10 @@ HTML;
             . '. Shuttles landed: ' . $sample->landed() . '. Descriptor at <code>weft/1/descriptor</code>. Thread at <code>weft/1/thread/warp-beta</code>.</p>' . "\n";
 
         $out .= '<div class="warps">' . "\n";
-        foreach ([$sample->alpha(), $sample->beta()] as $warp) {
-            $out .= $this->card($sample, $warp);
-        }
-        $out .= '</div>' . "\n";
-
-        $out .= '<h2>What a node does</h2>' . "\n";
-        $out .= '<ol class="steps">' . "\n";
         foreach ([
-            ['Run WEFT on a node', 'publish its descriptor with its protocol version, handle, address and seat.'],
-            ['Establish contact with another node', 'reach it through its known address and verify its InDX identity.'],
-            ['Exchange shuttles', 'verify their seals and sequence numbers, and use the thread to track delivery and identify missing messages.'],
+            ['Start a warp', 'An independent node starts as a warp, publishes its descriptor and joins the strand of the network it answers.'],
+            ['Sign the event', 'A participant signs an event with an InDX identity, and the chain records it with no balance.'],
+            ['Exchange shuttles', 'The warp hands a sealed shuttle to another warp, and the gossip, catch up and handshake rules govern the exchange.'],
         ] as [$step, $line]) {
             $out .= '<li><strong>' . $this->h($step) . '</strong> ' . $this->h($line) . '</li>' . "\n";
         }
